@@ -32,6 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     });
                 }
+            },
+            fill: function () {
+                if (Math.random() < 0.5) {
+                    this.newFeed = {
+                        url: "https://vc.ru/",
+                        oneParent: "feed__item",
+                        content: "content",
+                        title: "content-header"
+                    }
+                } else {
+                    this.newFeed = {
+                        url: "https://news.ycombinator.com/newest",
+                        oneParent: "athing",
+                        content: "content",
+                        title: "title"
+                    }
+                }
             }
         }
     })
