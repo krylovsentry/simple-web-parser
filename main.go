@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"github.com/labstack/echo"
 	_ "github.com/mattn/go-sqlite3"
-	"os"
 	"simple-web-parser/rest"
 )
 
@@ -12,19 +11,13 @@ func main() {
 	db := initDataBase("storage.db")
 	createDB(db)
 
-	port := os.Getenv("PORT")
-
-	if port == "" {
-		panic("port not descibed")
-	}
-
 	e := echo.New()
 	e.GET("/news", rests.GetNews(db))
 	e.POST("/feeder", rests.PostFeeder(db))
 	e.File("/", "app/index.html")
 	e.File("/src/main.js", "app/src/main.js")
 
-	e.Logger.Fatal(e.Start(":" + port))
+	e.Logger.Fatal(e.Start(":3333"))
 }
 
 func initDataBase(filePath string) *sql.DB {
