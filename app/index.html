@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>News parser</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Vue.js -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
+    <script src="src/main.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>My Feed</h2>
+
+            <input type="text"
+                   class="search"
+                   v-model="search"
+            >
+            <button class="btn btn-primary" v-on:click="searchNews" type="button">Search</button>
+            <ul class="list-group">
+                {{ notFound }}
+                <li class="list-group-item" v-for="new in news">
+                    <div>
+                        {{ new.title }}
+                    </div>
+                    <div>
+                        {{ new.content }}
+                    </div>
+                </li>
+            </ul>
+
+            <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       placeholder="URL"
+                       v-model="newFeed.url">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Parent class"
+                       v-model="newFeed.oneParent">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Title class"
+                       v-model="newFeed.title">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Content class"
+                       v-model="newFeed.content">
+
+                <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button" v-on:click="addFeeder">Add</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
